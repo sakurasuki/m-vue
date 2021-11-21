@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实现vue</title>
+    <style>
+      .red {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h3>{{person.name}}--{{person.age}}</h3>
+      <h4>{{person.fav}}</h4>
+      <h2>{{msg}}</h2>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <div v-text="msg"></div>
+      <div v-bind:style='{background:"skyblue",color:"red"}' v-bind:class="color">解析v-bind:style</div>
+      <div v-text="person.fav"></div>
+      <div v-html="htmlStr"></div>
+      <input type="text" v-model="msg" />
+      <input type="text" v-model="person.name" />
+      <button @click="handleClick">按钮</button>
+    </div>
+    <script src="./Observer.js"></script>
+    <script src="./MVue.js"></script>
+    <script>
+      const vm = new Mvue({
+        el: '#app',
+        data: {
+          person: {
+            name: 'name',
+            age: 18,
+            fav: 'game'
+          },
+          msg: 'vue源码剖析',
+          htmlStr: '解析v-html',
+          color: 'red'
+        },
+        methods: {
+          handleClick(a, b) {
+            //   console.log(a,b);
+            console.log('click', this);
+            this.person.name = 'yellow';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
